@@ -1,0 +1,21 @@
+.header{
+  background-color: #F8F8FF;
+  height: 70px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 60px;
+}
+
+.title-header{
+  font-size: 24px;
+  font-weight: bold;
+  color: #373F51;
+}
+
+.btns{
+  display: flex;
+  gap: 20px;
+  color: #373F51;
+  font-size: 18px;
+}
