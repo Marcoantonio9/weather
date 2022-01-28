@@ -1,0 +1,14 @@
+#teste{
+  height: 30vh;
+  background-color: #F8F8FF;
+}
+.area-cards{
+  display: flex;
+  justify-content: center;
+  gap: 130px;  
+}
+.cards{
+  border: 1px solid red;
+  width: 200px;
+  height: 180px;
+}
