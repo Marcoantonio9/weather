@@ -1,19 +1,46 @@
 #weather{
   /* 373F51 */
-  background-color: #373F51;
-  height: 100vh;
+  background-color: #F8F8FF;
+  height: calc(70vh - 70px);
+  display: flex;
+  justify-content: center;
+}
+
+.container-weather{
+  margin-top: 64px;
+  border-radius: 10px;
+  padding: 0px 20px;
+  width: 90%;
+  height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* background: url('/public/images/nublado2.jpg'); */
+  background-repeat:no-repeat;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  -o-background-size:cover;
+  background-size:cover;
+  background-position:center;
 }
 
 .title-city{
+  font-size: 24px;
+  color: #fafafa;
+}
+
+.title-temp{
   font-size: 40px;
   color: #fafafa;
 }
 
-.circle{
+.hours{
+  color: #fafafa;
+  font-size: 16px;  
+  font-weight: bold;
+}
+
+/* .circle{
   color: #fafafa;
   height: 200px;
   width: 200px;
@@ -22,15 +49,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  /* box-shadow: 5px 5px 21px 5px #111; */
+  align-items: center;  
   box-shadow: 0 -15px 15px rgba(255, 255, 255, 0.05), 
   inset 0 -15px 15px rgba(255, 255, 255, 0.05),
   0 15px 15px rgba(0, 0, 0, 0.3),
   inset 0 15px 15px rgba(0, 0, 0, 0.3)
   ;
-}
+} */
 
-.circle p{
+/* .circle p{
   margin-top: 8px;
-}
+} */
