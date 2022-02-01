@@ -1,7 +1,9 @@
 import React from 'react'
 import './Header.css'
+import { GlobalContext } from "../../Context";
 
 const Header = () => {
+  const global = React.useContext(GlobalContext)
   return(
     <div className="header">
       <div>
@@ -12,7 +14,7 @@ const Header = () => {
           <i className="fas fa-toggle-off"></i>
         </span>
         <span>
-          <i className="fas fa-search"></i>
+          <i className="fas fa-search" onClick={global.changeStatusModal}></i>
         </span>
       </div>      
     </div>

@@ -19,3 +19,7 @@
   color: #373F51;
   font-size: 18px;
 }
+
+.btns span{
+  cursor: pointer;
+}

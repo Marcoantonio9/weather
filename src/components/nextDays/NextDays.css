@@ -5,10 +5,79 @@
 .area-cards{
   display: flex;
   justify-content: center;
-  gap: 130px;  
+  gap: 55px;  
 }
 .cards{
-  border: 1px solid red;
+  border: 1px solid #373F51;
+  background-color: #373F51;
+  color: #fafafa;
+  border-radius: 8px;
   width: 200px;
   height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.data-title{
+  font-weight: normal;
+  font-size: 16px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: rgba(0,0,0,0.8);
+  z-index: 99999;
+  opacity: 1;
+  -webkit-transition: opacity 400ms ease-in;
+  -moz-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+
+}
+
+.close{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0px 20px;
+  height: 70px;
+}
+
+.fa-window-close{
+  color: #fafafa;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.inputs{
+  height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputs input{
+  height: 40px;
+  width: 500px;
+  padding: 0px 10px;
+}
+
+.inputs button{
+  height: 40px;
+  width: 100px;
+  cursor: pointer;
+  background-color: #373F51;
+  color: #fafafa;
+  border: none;
+  transition:  all ease 0.5s;
+}
+
+.inputs button:hover{
+  opacity: 0.7;
 }
