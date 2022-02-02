@@ -20,6 +20,8 @@ export const GlobalStorage = ({ children }) => {
   const [latSearch, setLatSearch] = React.useState(null)
   const [lonSearch, setLonSearch] = React.useState(null)
 
+  const [statusTheme, setStatusTheme] = React.useState(false)
+
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${nameCity}&appid=7cdd176038991a72ee740b15de047dca&lang=pt_br`
   const urlNextDays = `https://api.openweathermap.org/data/2.5/forecast?q=${nameCity}&units=metric&appid=7cdd176038991a72ee740b15de047dca&lang=pt_br`
   // const urlTeste = `https://api.openweathermap.org/data/2.5/onecall?lat=${latSearch}&lon=${lonSearch}&exclude={part}&appid=7cdd176038991a72ee740b15de047dca&lang=pt_br`
@@ -58,37 +60,7 @@ export const GlobalStorage = ({ children }) => {
       })
       .catch((error) => {
         console.log('erro aqui: ', error)
-      })
-
-      // axios.get(urlTeste).then((res) => {
-      //   console.log('lat: ', latSearch)
-      //   let arr = []
-      //   let arraySemanal = []
-      //   for(let i = 0; i < 5; i++){
-      //     arraySemanal.push(res.data.daily[i])
-      //   }       
-      //   arr = [...arraySemanal]
-      //   setArrNextDays(...global.arrNextDays, arr)         
-      //   // arr.push(res.data.list[5], res.data.list[13], res.data.list[21], res.data.list[29], res.data.list[37])
-      //   // setArrNextDays(arr)        
-      // })
-      // .catch((error) => {
-      //   let arr = [
-      //     {
-      //       dt_txt: 'Erro',
-      //       main: {
-      //         temp: 0
-      //       },
-      //       weather: [
-      //         {
-      //           description: 'Erro'
-      //         }
-      //       ]
-      //     }
-      //   ]
-      //   setArrNextDays(arr)
-      //   console.log(error)
-      // })      
+      })     
     }
   }
 
@@ -146,9 +118,32 @@ export const GlobalStorage = ({ children }) => {
     }
   }
 
+  function changeStatusTheme(){
+    console.log('dark theme')
+    if(statusTheme == false){
+      setStatusTheme(true)
+      localStorage.setItem('dark-theme', true)
+    }else if(statusTheme == true){
+      setStatusTheme(false)
+      localStorage.setItem('dark-theme', false)
+    }
+  }
+
+  React.useEffect(() => {
+    let dadosLocal = localStorage.getItem('dark-theme')
+    console.log(dadosLocal)
+    
+    if(dadosLocal == 'true'){
+      setStatusTheme(true)
+    }else if(dadosLocal == 'false'){
+      setStatusTheme(false)
+    }
+  },[])
+
   return (
     <GlobalContext.Provider value={{ infos, setInfos, temp, setTemp, getNavagation, lat, lon, changeStatusModal, statusModal, searchCity, 
-    handleCity, changeImages, image, setImage, descriptionForChangeImage, setDescriptionForChangeImage, arrNextDays, setArrNextDays, numberConverteCelsius }}>
+    handleCity, changeImages, image, setImage, descriptionForChangeImage, setDescriptionForChangeImage, arrNextDays, setArrNextDays, 
+    numberConverteCelsius, changeStatusTheme, statusTheme }}>
       {children}
     </GlobalContext.Provider>
   )

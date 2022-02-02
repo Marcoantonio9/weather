@@ -88,3 +88,21 @@
   justify-content: space-between;
   padding: 5px 10px;
 }
+
+.loading {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  background-color: #fafafa;
+  color: #fafafa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading img{
+  width: 40px;
+}

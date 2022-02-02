@@ -4,13 +4,9 @@ import './GetWeather.css'
 import { GlobalContext } from '../../Context'
 
 const GetWeather = () => {
-
-  // const [infos, setInfos] = React.useState(null)
-  // const [temp, setTemp] = React.useState(null)
   const [hours, setHours] = React.useState(null)
-  // let [image, setImage] = React.useState(null)
-
   const global = React.useContext(GlobalContext)
+  const image404 = "/images/banner-404.jpg"
 
   React.useEffect(() => {
     global.getNavagation()
@@ -25,7 +21,6 @@ const GetWeather = () => {
         global.setTemp(convertTempString)
         let data = new Date()
         setHours(data.getHours() + ':' + data.getMinutes())
-
         let desc = response.data.weather[0].description
         if (desc == 'nublado') {
           global.setImage("/images/nublado2.jpg")
@@ -33,24 +28,25 @@ const GetWeather = () => {
           global.setImage("/images/chuva.jpg")
         } else if (desc.includes('nuvens')) {
           global.setImage("/images/nublado2.jpg")
-        } else if( desc == 'céu limpo') {
+        } else if (desc == 'céu limpo') {
           global.setImage("/images/dia-limpo.jpg")
         }
       })
     }
   }, [global.lon])
 
-
   return (
-    <div id="weather">
+    <div id="weather" style={{ backgroundColor: global.statusTheme == true ? '#010101' : '' }}>
       <div className="container-weather"
-        style={{ backgroundImage: global.infos && global.infos.weather[0].description ? `url(${global.image})` : '' }}>
+        style={{ backgroundImage: global.infos && global.infos.weather[0].description ? `url(${global.image})` : `url(${image404})` }}>
         <h1 className="title-city">
-          {global.infos ? global.infos.name + ', ' + global.infos.sys.country : 'não'}
+          {global.infos ? global.infos.name + ', ' + global.infos.sys.country : 'Cidade não encontrada'}
+          <br />
+          {global.infos ? '' : <p>Necessário ativar a localização.</p>}
         </h1>
         <br />
         <div className="circle">
-          <h1 className="title-temp">{global.temp && global.temp.substr(0, 2)} °C</h1>
+          <h1 className="title-temp">{global.temp && global.temp.substr(0, 2) + ' °C'} </h1>
           <p className="title-temp">{global.infos && global.infos.weather[0].description}</p>
           <p className="hours">{hours}</p>
         </div>

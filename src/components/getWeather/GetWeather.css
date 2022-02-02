@@ -60,3 +60,21 @@
 /* .circle p{
   margin-top: 8px;
 } */
+
+.btn_geolocation{
+  margin-top: 24px;
+  width: 180px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #fafafa;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: transparent;
+  color: #fafafa;
+  transition: all ease 0.5s;
+}
+.btn_geolocation:hover{
+  background-color: #fafafa;
+  color: #373F51;
+}

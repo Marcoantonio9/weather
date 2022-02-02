@@ -18,7 +18,7 @@ const NextDays = () => {
         //arr.push(res.data.list[5], res.data.list[13], res.data.list[21], res.data.list[29], res.data.list[37])
         //arr.push(res.data.daily)
         let arraySemanal = []
-        for(let i = 0; i < 5; i++){
+        for (let i = 0; i < 5; i++) {
           arraySemanal.push(res.data.daily[i])
         }
         arr = [...arraySemanal]
@@ -28,8 +28,16 @@ const NextDays = () => {
     }
   }, [global.lon])
 
+  React.useEffect(() => {
+    setTimeout(() => {
+      setStatusLoading(false)
+    }, 1000)
+  }, [])
+
+  const [statusLoading, setStatusLoading] = React.useState(true)
+
   return (
-    <div id="teste">
+    <div id="teste" style={{ backgroundColor: global.statusTheme == true ? '#010101' : '' }}>
       {global.statusModal &&
         <div className="modal">
           <div className="close">
@@ -38,7 +46,7 @@ const NextDays = () => {
             </span>
           </div>
           <div className="inputs">
-            <input type="text" placeholder="Digite o nome da cidade.." onChange={global.handleCity}/>
+            <input type="text" placeholder="Digite o nome da cidade.." onChange={global.handleCity} />
             <button onClick={global.searchCity}>Pesquisar</button>
           </div>
         </div>
@@ -46,12 +54,17 @@ const NextDays = () => {
 
 
       <div className="area-cards">
+        {global.arrNextDays.length <= 0 && statusLoading == true &&
+          <div className="loading">
+            <img src="/images/loading.gif" alt="carregando"></img>
+          </div>
+        }
         {global.arrNextDays.length > 0 && global.arrNextDays.map((item, i) => (
-          <div className="cards" key={i}>
+          <div className="cards" key={i} style={{ backgroundColor: global.statusTheme == true ? '#111' : '', border: 'none' }}>
             <p className="data-title">{new Date(item.dt * 1000).toLocaleString().substr(0, 10)}</p>
             <img src={`http://openweathermap.org/img/wn/${item.weather[0].icon}.png`} alt="" />
             <h2>{(item.temp.day).toFixed(0)} °C</h2>
-            <h3 className="data-title">{item.weather[0].description}</h3> 
+            <h3 className="data-title">{item.weather[0].description}</h3>
 
             <div className="min_max">
               <p>
@@ -60,7 +73,7 @@ const NextDays = () => {
 
               <p>
                 Max: {(item.temp.max).toFixed(0)} °C
-              </p>              
+              </p>
             </div>
           </div>
         ))}
