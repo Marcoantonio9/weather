@@ -4,6 +4,7 @@ import Header from './components/Header/Header'
 import GetWeather from './components/getWeather/GetWeather'
 import NextDays from './components/nextDays/NextDays'
 import { GlobalStorage } from './Context'
+import Modal from './components/modal/Modal'
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Header />
         <GetWeather />
         <NextDays />
+        <Modal />
       </div>
     </GlobalStorage>
   )

@@ -5,25 +5,20 @@ import axios from 'axios'
 import { GlobalContext } from "../../Context";
 
 const NextDays = () => {
-
   const global = React.useContext(GlobalContext)
-  //const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${global.lat}&lon=${global.lon}&appid=7cdd176038991a72ee740b15de047dca&lang=pt_br`
-  // const [arrNextDays, setArrNextDays] = React.useState([])  
-  const urlTeste = `https://api.openweathermap.org/data/2.5/onecall?lat=${global.lat}&lon=${global.lon}&units=metric&exclude={part}&appid=7cdd176038991a72ee740b15de047dca&lang=pt_br`
-
+  const urlNextDays = `https://api.openweathermap.org/data/2.5/onecall?lat=${global.lat}&lon=${global.lon}&units=metric&exclude={part}&appid=${process.env.REACT_APP_KEY}&lang=pt_br`
+  const [statusLoading, setStatusLoading] = React.useState(true)
+  
   React.useEffect(() => {
     if (global.lon != null) {
-      axios.get(urlTeste).then((res) => {
+      axios.get(urlNextDays).then((res) => {
         let arr = []
-        //arr.push(res.data.list[5], res.data.list[13], res.data.list[21], res.data.list[29], res.data.list[37])
-        //arr.push(res.data.daily)
         let arraySemanal = []
         for (let i = 0; i < 5; i++) {
           arraySemanal.push(res.data.daily[i])
         }
         arr = [...arraySemanal]
         global.setArrNextDays(...global.arrNextDays, arr)
-        console.log(arr)
       })
     }
   }, [global.lon])
@@ -34,25 +29,8 @@ const NextDays = () => {
     }, 1000)
   }, [])
 
-  const [statusLoading, setStatusLoading] = React.useState(true)
-
   return (
-    <div id="teste" style={{ backgroundColor: global.statusTheme == true ? '#010101' : '' }}>
-      {global.statusModal &&
-        <div className="modal">
-          <div className="close">
-            <span>
-              <i className="far fa-window-close" onClick={global.changeStatusModal}></i>
-            </span>
-          </div>
-          <div className="inputs">
-            <input type="text" placeholder="Digite o nome da cidade.." onChange={global.handleCity} />
-            <button onClick={global.searchCity}>Pesquisar</button>
-          </div>
-        </div>
-      }
-
-
+    <div id="container-cards" style={{ backgroundColor: global.statusTheme == true ? '#010101' : '' }}>
       <div className="area-cards">
         {global.arrNextDays.length <= 0 && statusLoading == true &&
           <div className="loading">
