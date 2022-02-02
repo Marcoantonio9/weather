@@ -29,6 +29,8 @@ const GetWeather = () => {
           global.setImage("/images/dia-limpo.jpg")
         } else if (desc == 'névoa') {
           global.setImage("/images/nublado2.jpg")
+        }else if (desc.includes('garoa')) {
+          global.setImage("/images/chuva.jpg")
         }
       })
     }

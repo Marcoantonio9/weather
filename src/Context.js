@@ -59,17 +59,17 @@ export const GlobalStorage = ({ children }) => {
         setDescriptionForChangeImage(response.data.weather[0].description)
         setLatSearch(response.data.coord.lat)
         setLonSearch(response.data.coord.lon)
-        setStatusErrorSearch(false)        
+        setStatusErrorSearch(false)
         changeStatusModal()
       })
-        .catch((error) => {          
+        .catch((error) => {
           setStatusErrorSearch(true)
         })
     }
   }
 
   React.useEffect(() => {
-    if (lonSearch != null) {      
+    if (lonSearch != null) {
       const urlTeste = `https://api.openweathermap.org/data/2.5/onecall?lat=${latSearch}&lon=${lonSearch}&units=metric&exclude={part}&appid=${process.env.REACT_APP_KEY}&lang=pt_br`
       axios.get(urlTeste).then((res) => {
         let arr = []
@@ -78,7 +78,7 @@ export const GlobalStorage = ({ children }) => {
           arraySemanal.push(res.data.daily[i])
         }
         arr = [...arraySemanal]
-        setArrNextDays(arr)        
+        setArrNextDays(arr)
       })
         .catch((error) => {
           let arr = [
@@ -94,17 +94,17 @@ export const GlobalStorage = ({ children }) => {
               ]
             }
           ]
-          setArrNextDays(arr)          
+          setArrNextDays(arr)
         })
     }
 
   }, [lonSearch])
 
   React.useEffect(() => {
-    changeImages()    
+    changeImages()
   }, [descriptionForChangeImage])
 
-  function changeImages() {    
+  function changeImages() {
     if (descriptionForChangeImage == 'nublado') {
       setImage("/images/nublado2.jpg")
     } else if (descriptionForChangeImage.includes('chuva')) {
@@ -113,10 +113,14 @@ export const GlobalStorage = ({ children }) => {
       setImage("/images/nublado2.jpg")
     } else if (descriptionForChangeImage == 'céu limpo') {
       setImage("/images/dia-limpo.jpg")
+    } else if (descriptionForChangeImage == 'névoa') {
+      setImage("/images/nublado2.jpg")
+    } else if (descriptionForChangeImage.includes('garoa')) {
+      setImage("/images/chuva.jpg")
     }
   }
 
-  function changeStatusTheme() {    
+  function changeStatusTheme() {
     if (statusTheme == false) {
       setStatusTheme(true)
       localStorage.setItem('dark-theme', true)
@@ -127,7 +131,7 @@ export const GlobalStorage = ({ children }) => {
   }
 
   React.useEffect(() => {
-    let dadosLocal = localStorage.getItem('dark-theme')    
+    let dadosLocal = localStorage.getItem('dark-theme')
 
     if (dadosLocal == 'true') {
       setStatusTheme(true)
