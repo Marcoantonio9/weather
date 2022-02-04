@@ -6,8 +6,7 @@ import NextDays from './components/nextDays/NextDays'
 import { GlobalStorage } from './Context'
 import Modal from './components/modal/Modal'
 
-const App = () => {
-  console.log('teste: ', process.env.REACT_APP_KEY)
+const App = () => {  
   return (
     <GlobalStorage>
       <div>
