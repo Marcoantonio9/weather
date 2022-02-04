@@ -51,6 +51,10 @@
 }
 
 @media(max-width: 768px){
+  #container-cards{
+    border: 1px solid red;
+    height: 100%;
+  }
   .area-cards{
     flex-direction: column;
     align-items: center;
