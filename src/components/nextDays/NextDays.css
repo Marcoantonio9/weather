@@ -51,8 +51,7 @@
 }
 
 @media(max-width: 768px){
-  #container-cards{
-    border: 1px solid red;
+  #container-cards{    
     height: 100%;
   }
   .area-cards{
