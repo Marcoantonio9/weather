@@ -7,6 +7,7 @@ import { GlobalStorage } from './Context'
 import Modal from './components/modal/Modal'
 
 const App = () => {
+  console.log('teste: ', process.env.REACT_APP_KEY)
   return (
     <GlobalStorage>
       <div>
